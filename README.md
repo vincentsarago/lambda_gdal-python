@@ -39,7 +39,7 @@ pip --no-cache-dir install numpy
 wget https://github.com/OSGeo/proj.4/archive/4.9.2.tar.gz
 tar -zvxf 4.9.2.tar.gz
 cd proj.4-4.9.2/
-./configure --prefix=/home/ec2-user/app/local
+./configure --prefix=/home/ec2-user/lambda/local
 make
 make install
 
@@ -48,9 +48,9 @@ cd ..
 wget http://download.osgeo.org/gdal/1.11.3/gdal-1.11.3.tar.gz
 tar -xzvf gdal-1.11.3.tar.gz
 cd gdal-1.11.3
-./configure --prefix=/home/ec2-user/app/local  \
-    --with-geos=/home/ec2-user/app/local/bin/geos-config  \
-    --with-static-proj4=/home/ec2-user/app/local \
+./configure --prefix=/home/ec2-user/lambda/local  \
+    --with-geos=/home/ec2-user/lambda/local/bin/geos-config  \
+    --with-static-proj4=/home/ec2-user/lambda/local \
     --with-curl \
     --with-python
 make
@@ -65,10 +65,32 @@ touch mylambdafunction.py
 
 ```
 
-###### Edit your Function
+###### Edit your function
+
+```python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import os
+from ctypes import cdll
+
+#Set environment variables and load shared libraries
+path = os.path.dirname(os.path.realpath(__file__))
+os.environ['GDAL_DATA'] = os.path.join(path, "local/share/gdal")
+lib2 = cdll.LoadLibrary(os.path.join(path, 'local/lib/libproj.so.9'))
+lib1 = cdll.LoadLibrary(os.path.join(path, 'local/lib/libgdal.so'))
+
+#Import gdal modules
+from osgeo import gdal
+
+def processing_func(event, context):
+    "This is my worker function that responds to an API getaway call"
+    
+    #Whatever you want
+    
+    return results 
 
 
-
+```
 
 
 
