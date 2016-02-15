@@ -120,7 +120,7 @@ zip -r9 /home/ec2-user/lambda/lambda.zip *
 
 ```
 
-###### We're done you can now upload your lambda.zip in AWS S3 and call your worker (mylambdafunction.processing_func) using API gateway for example)
+We're done you can now upload your lambda.zip in AWS S3 and call your worker (mylambdafunction.processing_func) using API gateway for example)
 
   
 More
