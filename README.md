@@ -2,7 +2,7 @@
 
 Create a python Lambda function with [GDAL](http://gdal.org) python bindings
 
-Related with RemotePixel.ca [blog](http://remotepixel.ca/blog/landsat8-ndvi-20160212.html)
+Related to RemotePixel.ca [blog](http://remotepixel.ca/blog/landsat8-ndvi-20160212.html)
  
 I assume you know how to start an EC2 virtual server (with AMAZON Linux AMI) and to run some basics shell commands
 
