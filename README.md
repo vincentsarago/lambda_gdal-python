@@ -104,7 +104,7 @@ cd $VIRTUAL_ENV/lib64/python2.7/site-packages/GDAL-1.11.3-py2.7-linux-x86_64.egg
 mv o* ../
 mv g* ../
 cd $VIRTUAL_ENV/..
-``
+```
 
 We can now zip everything
 
