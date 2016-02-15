@@ -61,11 +61,13 @@ cd ..
 ###### Create you python function
 
 ```sh
-touch mylambdafunction.py
+vi /home/ec2-user/lambda/mylambdafunction.py
 
 ```
 
-###### Edit your function
+###### Edit your function 
+
+In order to get osgeo.gdal to load you new to set the GDAL_DATA path in the environment variable and load some shared libraries 
 
 ```python
 #!/usr/bin/env python
@@ -89,8 +91,31 @@ def processing_func(event, context):
     
     return results 
 
+```
+
+###### Creating a Deployment Package
+You have create a zip file with everything you need (shared libraries and python packages)
+
+First we need to move the osgeo package into the site-packages root directory
+```sh
+cd $VIRTUAL_ENV/lib64/python2.7/site-packages/GDAL-1.11.3-py2.7-linux-x86_64.egg
+mv o* ../
+mv g* ../
+cd $VIRTUAL_ENV/..
+``
+
+We can now zip everything
+
+```sh
+zip -9 lambda.zip mylambdafunction.py
+zip -r9 lambda.zip local/lib/libgdal.so
+zip -r9 lambda.zip local/lib/libproj.so.9
+zip -r9 lambda.zip local/share
+cd $VIRTUAL_ENV/lib/python2.7/site-packages
+zip -r9 /home/ec2-user/lambda/lambda.zip *
+cd $VIRTUAL_ENV/lib64/python2.7/site-packages
+zip -r9 /home/ec2-user/lambda/lambda.zip *
 
 ```
 
-
-
+#### We're done you can now upload your lambda.zip in AWS S3 and call your worker (mylambdafunction.processing_func) using API gateway for example)
