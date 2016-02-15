@@ -1,8 +1,10 @@
 # Lambda gdal-python
 
 Create a python Lambda function with [GDAL](http://gdal.org) python bindings
+
+Related with RemotePixel.ca [blog](http://remotepixel.ca/blog/landsat8-ndvi-20160212.html)
  
-I assume you know a to start and EC2 (AMAZON Linux AMI) and to run some basics shell commands
+I assume you know how to start an EC2 virtual server (with AMAZON Linux AMI) and to run some basics shell commands
 
 ###### Update and Install Python
 
@@ -118,4 +120,11 @@ zip -r9 /home/ec2-user/lambda/lambda.zip *
 
 ```
 
-#### We're done you can now upload your lambda.zip in AWS S3 and call your worker (mylambdafunction.processing_func) using API gateway for example)
+###### We're done you can now upload your lambda.zip in AWS S3 and call your worker (mylambdafunction.processing_func) using API gateway for example)
+
+  
+More
+-------
+- Running Python with compiled code on AWS Lambda [PerryGeo Blog](http://www.perrygeo.com/running-python-with-compiled-code-on-aws-lambda.html)
+- AWS Lambda [Getting Started](https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html)
+
